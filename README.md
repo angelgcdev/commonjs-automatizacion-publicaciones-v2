@@ -16,3 +16,5 @@ PORT=4000
 modificar la tabla en la base de datos de la siguiente forma:
 
 ALTER TABLE posts ADD COLUMN activo BOOLEAN DEFAULT false;
+# commonjs-automatizacion-publicaciones-v2
+Este es el mismo proyecto de automatizaciones de facebook pero con CommonJS
