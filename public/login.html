@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inicia Sesión</title>
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/login.css" />
+  </head>
+  <body>
+    <!-- Formulario de Inicio de sesión -->
+    <div class="container">
+      <div class="form-container">
+        <div class="overlay"></div>
+        <div class="form-content">
+          <!-- <div class="form-title">
+            <h2 class="form-title__main">Automatiza tus publicaciones de</h2>
+            <h2 class="form-title__sub">Facebook</h2>
+          </div> -->
+
+          <div class="form-logo">
+            <img
+              class="form-logo__img"
+              src="./assets/images/facebook.png"
+              alt="Logo de facebook"
+            />
+          </div>
+
+          <form class="form" id="loginForm">
+            <div class="form__group">
+              <input
+                class="form__input"
+                type="email"
+                id="email"
+                name="email"
+                required
+                placeholder="Correo Electrónico"
+              />
+            </div>
+
+            <div class="form__group password-wrapper">
+              <input
+                class="form__input password password-flex"
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Contraseña"
+                required
+              />
+              <button
+                type="button"
+                class="button--password button__toggle-icon"
+              >
+                <img
+                  class="toggleIcon"
+                  src="./assets/icons/visibility.svg"
+                  alt=""
+                />
+              </button>
+            </div>
+
+            <button class="button button--login" type="submit">
+              Iniciar Sesión
+            </button>
+          </form>
+
+          <a
+            href="./createAccount.html"
+            class="form__link button button-gost button--register"
+          >
+            Crear cuenta nueva
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="./js/login.js"></script>
+  </body>
+</html>

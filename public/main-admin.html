@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Informe de Publicaciones de Facebook</title>
+    <link rel="stylesheet" href="./css/main-admin.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <button id="buttonUpdate" class="button button--update">Actualizar</button>
+
+    <a href="./main.html" class="button button--back"> Volver </a>
+
+    <div class="informe">
+      <header class="informe__header">
+        <h1 class="informe__title">Informe de Publicaciones de Facebook</h1>
+      </header>
+
+      <nav class="informe__nav">
+        <button id="resumenBtn" class="informe__button informe__button--active">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="informe__icon"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="18" y1="20" x2="18" y2="10"></line>
+            <line x1="12" y1="20" x2="12" y2="4"></line>
+            <line x1="6" y1="20" x2="6" y2="14"></line>
+          </svg>
+          Resumen
+        </button>
+
+        <button id="publicacionesBtn" class="informe__button">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="informe__icon"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+            ></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+            <line x1="16" y1="13" x2="8" y2="13"></line>
+            <line x1="16" y1="17" x2="8" y2="17"></line>
+            <polyline points="10 9 9 9 8 9"></polyline>
+          </svg>
+          Publicaciones
+        </button>
+
+        <button id="registroBtn" class="informe__button">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="informe__icon"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+          </svg>
+          Registro Detallado
+        </button>
+      </nav>
+
+      <main id="main__content" class="main__content">
+        <!-- Aqui vendra el contenido de JavaScript -->
+        <!-- Buscador de publicaciones -->
+        <div class="search__container-posts">
+          <input
+            class="search__posts-input"
+            type="text"
+            id="search__posts-input"
+            placeholder="Buscar por publicación..."
+          />
+        </div>
+
+        <div id="content" class="informe__content informe__content-table"></div>
+      </main>
+    </div>
+
+    <!-- Modal para mostrar el reporte de publicaciones -->
+    <div class="modal" id="reportModal">
+      <div class="modal-content-report">
+        <span id="closeReportModal" class="close">&times;</span>
+        <div class="report__title-container">
+          <h2 class="report__title" id="title_report">
+            Reporte de Publicaciones
+          </h2>
+        </div>
+        <div id="reportContent" class="report-content">
+          <!-- Aquí se cargará el reporte -->
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="./js//main-admin.js"></script>
+  </body>
+</html>

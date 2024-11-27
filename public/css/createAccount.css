@@ -1,0 +1,53 @@
+/* main.css*/
+@import "./main.css";
+
+.form-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.6rem;
+  height: 100vh;
+}
+
+.link__login {
+  color: white;
+  align-self: flex-start;
+  padding-left: 3.2rem;
+}
+
+.form-logo {
+  margin: initial;
+}
+
+.form {
+  margin: initial;
+}
+
+.link__login__icon {
+  width: 3rem;
+}
+
+.button--login {
+  background-color: var(--skyBlue);
+  width: 100%;
+  color: var(--white);
+}
+
+.button--login:hover {
+  background-color: var(--skyBlueDark);
+  color: var(--gray);
+}
+
+.form__option {
+  background-color: var(--white);
+  color: var(--black);
+}
+
+@media (min-width: 767px) {
+  .form-container {
+    margin: initial;
+    width: 100vw;
+    height: 100vh;
+  }
+}

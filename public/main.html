@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="description"
+      content="Formulario para automatizar publicaciones en Facebook."
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Automatización de publicaciones</title>
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Contenedor de mensajes socket io -->
+    <div id="messageModal" class="message-modal">
+      <div class="message-content">
+        <span id="closeButtonModal" class="close-button">&times;</span>
+        <ul id="messages" class="WSmessages"></ul>
+      </div>
+    </div>
+
+    <!-- Contenedor para la animacion de carga -->
+    <div id="loading" class="loading__container hidden"></div>
+
+    <!-- Formulario de registro de cuentas de facebook -->
+    <div class="container">
+      <div class="container__form-post">
+        <div class="form-sesion">
+          <button
+            class="button button--logout button--position"
+            id="logoutButton"
+          >
+            Cerrar Sesión
+          </button>
+        </div>
+        <div class="form-container">
+          <div class="overlay"></div>
+          <div id="form-content" class="form-content">
+            <div class="form-title">
+              <h1 class="form-title__main">Automatiza tus publicaciones de</h1>
+              <h1 class="form-title__sub">Facebook</h1>
+            </div>
+
+            <form class="form" id="automationForm">
+              <div class="form__group">
+                <input
+                  class="form__input"
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  placeholder="Correo Electrónico"
+                />
+              </div>
+
+              <div class="form__group password-wrapper">
+                <input
+                  class="form__input password"
+                  type="password"
+                  name="password"
+                  required
+                  placeholder="Contraseña"
+                />
+                <button
+                  type="button"
+                  class="button--password button__toggle-icon"
+                >
+                  <img
+                    class="toggleIcon"
+                    src="./assets/icons/visibility.svg"
+                    alt=""
+                  />
+                </button>
+              </div>
+
+              <div class="form__group">
+                <input
+                  class="form__input"
+                  type="url"
+                  id="urlPost"
+                  name="urlPost"
+                  placeholder="URL de la Publicación"
+                  required
+                />
+              </div>
+
+              <div class="form__group">
+                <textarea
+                  class="form__textarea"
+                  id="message"
+                  name="message"
+                  placeholder="Escribe tu mensaje"
+                  required
+                ></textarea>
+              </div>
+
+              <div class="form__group">
+                <input
+                  class="form__input"
+                  type="number"
+                  id="postCount"
+                  name="postCount"
+                  placeholder="Número de Publicaciones"
+                  required
+                  min="1"
+                />
+              </div>
+              <div class="form__group">
+                <input
+                  class="form__input"
+                  type="number"
+                  id="postInterval"
+                  name="postInterval"
+                  placeholder="Tiempo entre publicaciones (minutos)"
+                  required
+                  min="0"
+                />
+              </div>
+              <button class="button button--add" type="submit">
+                + Añadir Publicación
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="user-list">
+        <h2 class="user-list__title">Publicaciones Programadas</h2>
+
+        <div class="container__buttons">
+          <button
+            class="button button--report button-gost"
+            id="viewReportButton"
+          >
+            Ver el Reporte
+          </button>
+
+          <button
+            class="button button--reportDelete button-gost"
+            id="deleteReportButton"
+            disabled
+          >
+            Eliminar Reporte
+          </button>
+          <button
+            class="button button--share button-gost"
+            id="sharePostsButton"
+          >
+            Compartir publicaciones
+          </button>
+        </div>
+
+        <!-- Contador de publicaciones registradas -->
+        <p class="user-list__count" id="userCount"></p>
+
+        <!-- Buscador de publicaciones -->
+        <div class="search__container-posts">
+          <input
+            class="search__posts-input"
+            type="text"
+            id="search__posts-input"
+            placeholder="Buscar por email"
+          />
+        </div>
+
+        <div id="posts" class="posts__container"></div>
+      </div>
+    </div>
+
+    <!-- Modal para editar usuarios -->
+    <div id="editModal" class="modal">
+      <div class="modal-content">
+        <span id="closeModal" class="close">&times;</span>
+        <div class="form-title">
+          <h2 class="form-title__main">Editar Cuenta</h2>
+        </div>
+        <form id="editForm" class="form">
+          <div class="form__group">
+            <input
+              class="form__input"
+              type="number"
+              id="id_post"
+              name="id_post"
+              placeholder="id post"
+              required
+              readonly
+            />
+          </div>
+          <div class="form__group">
+            <input
+              class="form__input"
+              type="number"
+              id="id_usuario"
+              name="id_usuario"
+              placeholder="id usuario"
+              required
+              readonly
+            />
+          </div>
+          <div class="form__group">
+            <label class="form__text" for="editEmail">Correo Electrónico</label>
+            <input
+              class="form__input"
+              type="email"
+              id="editEmail"
+              name="editEmail"
+              required
+            />
+          </div>
+
+          <div class="form__group">
+            <label class="form__text" for="editPassword">Contraseña</label>
+            <div class="form__group password-wrapper">
+              <input
+                class="form__input password"
+                id="editPassword"
+                type="text"
+                name="editPassword"
+                required
+              />
+              <button
+                type="button"
+                class="button--password button__toggle-icon"
+              >
+                <img
+                  class="toggleIcon"
+                  src="./assets/icons/visibility.svg"
+                  alt=""
+                />
+              </button>
+            </div>
+          </div>
+
+          <div class="form__group">
+            <label class="form__text" for="editUrlPost"
+              >URL de la Publicación</label
+            >
+            <input
+              class="form__input"
+              type="url"
+              id="editUrlPost"
+              name="editUrlPost"
+              required
+            />
+          </div>
+
+          <div class="form__group">
+            <label class="form__text" for="editMessage"
+              >Escribe tu mensaje</label
+            >
+            <textarea
+              class="form__textarea"
+              id="editMessage"
+              name="editMessage"
+              required
+            ></textarea>
+          </div>
+
+          <div class="form__group">
+            <label class="form__text" for="editPostCount"
+              >Número de Publicaciones</label
+            >
+            <input
+              class="form__input"
+              type="number"
+              id="editPostCount"
+              name="editPostCount"
+              min="1"
+              required
+            />
+          </div>
+          <div class="form__group">
+            <label class="form__text" for="editPostInterval"
+              >Intervalo entre publicaciones (minutos)</label
+            >
+            <input
+              class="form__input"
+              type="number"
+              id="editPostInterval"
+              name="editPostInterval"
+              required
+              min="0"
+            />
+          </div>
+
+          <!-- <input type="hidden" id="editOldEmail" name="oldEmail" /> -->
+
+          <button class="button button--save" type="submit">
+            Guardar Cambios
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Modal para mostrar el reporte de publicaciones -->
+    <div class="modal" id="reportModal">
+      <div class="modal-content-report">
+        <span id="closeReportModal" class="close">&times;</span>
+        <div class="report__title-container">
+          <h2 class="report__title" id="title_report">
+            Reporte de Publicaciones
+          </h2>
+        </div>
+        <div id="reportContent" class="report-content">
+          <!-- Aquí se cargará el reporte -->
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="./js/main.js"></script>
+  </body>
+</html>

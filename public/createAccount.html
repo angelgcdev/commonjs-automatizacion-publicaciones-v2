@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Crear cuenta</title>
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/createAccount.css" />
+  </head>
+  <body>
+    <!-- Formulario de Registro -->
+    <div class="container">
+      <div class="form-container">
+        <div class="overlay"></div>
+        <div class="form-content">
+          <a href="./login.html" class="link__login">
+            <img
+              class="link__login__icon"
+              src="./assets/icons/arrow_back.svg"
+              alt="icon de flecha"
+            />
+          </a>
+
+          <div class="form-logo">
+            <img
+              class="form-logo__img"
+              src="./assets/images/facebook.png"
+              alt="Logo de facebook"
+            />
+          </div>
+
+          <form class="form" id="registerForm">
+            <div class="form__group">
+              <input
+                class="form__input"
+                type="text"
+                id="registerNames"
+                name="names"
+                placeholder="Nombres"
+                required
+              />
+            </div>
+
+            <div class="form__group">
+              <input
+                class="form__input"
+                type="text"
+                id="registerLastNames"
+                name="LastNames"
+                placeholder="Apellidos"
+                required
+              />
+            </div>
+
+            <div class="form__group">
+              <select
+                name="cargo"
+                id="registerCargo"
+                class="form__input form__section"
+              >
+                <option class="form__option" value="">
+                  Selecciona un cargo
+                </option>
+              </select>
+            </div>
+
+            <div class="form__group">
+              <input
+                class="form__input"
+                type="text"
+                id="registerOffice"
+                name="office"
+                placeholder="Oficina"
+                required
+              />
+            </div>
+
+            <div class="form__group">
+              <input
+                class="form__input"
+                type="email"
+                id="registerEmail"
+                name="email"
+                required
+                placeholder="Correo Electrónico"
+              />
+            </div>
+
+            <div class="form__group password-wrapper">
+              <input
+                class="form__input password"
+                type="password"
+                id="registerPassword"
+                name="password"
+                required
+                placeholder="Contraseña"
+              />
+              <button
+                type="button"
+                class="button--password button__toggle-icon"
+              >
+                <img
+                  class="toggleIcon"
+                  src="./assets/icons/visibility.svg"
+                  alt=""
+                />
+              </button>
+            </div>
+
+            <button class="button button--login" type="submit">
+              Crear Cuenta
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="./js/register.js"></script>
+  </body>
+</html>
